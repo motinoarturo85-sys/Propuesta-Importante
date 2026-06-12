@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>❤️ Para Ti ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#000;
+overflow:hidden;
+height:100vh;
+color:white;
+font-family:'Cormorant Garamond',serif;
+}
+
+.page{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:30px;
+text-align:center;
+animation:fade 1s;
+}
+
+.hidden{
+display:none;
+}
+
+h1{
+font-size:3rem;
+line-height:1.1;
+margin-bottom:25px;
+
+background:linear-gradient(
+to bottom,
+#ffffff,
+#ffb6d0
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.normal{
+font-size:2rem;
+line-height:1.4;
+color:#ddd;
+max-width:800px;
+}
+
+.rosa{
+margin-top:25px;
+font-size:2.7rem;
+color:#ff8db3;
+font-family:'Dancing Script',cursive;
+}
+
+.btn{
+
+margin-top:35px;
+
+padding:18px 45px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.15);
+
+color:white;
+
+font-size:1.2rem;
+
+border-radius:50px;
+
+cursor:pointer;
+
+backdrop-filter:blur(10px);
+
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+.buttons{
+display:flex;
+gap:15px;
+margin-top:30px;
+}
+
+.heart{
+position:absolute;
+font-size:20px;
+pointer-events:none;
+animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+
+from{
+transform:translateY(0);
+opacity:1;
+}
+
+to{
+transform:translateY(-120vh);
+opacity:0;
+}
+
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+}
+
+to{
+opacity:1;
+}
+
+}
+
+.final-title{
+font-size:4rem;
+}
+
+.final-text{
+font-size:2.5rem;
+color:#ff9ec2;
+font-family:'Dancing Script',cursive;
+margin-top:20px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="hearts"></div>
+
+<!-- PAGINA 1 -->
+
+<div class="page" id="p1">
+
+<p class="normal">
+En el silencio de mis noches más tristes...
+</p>
+
+<p class="rosa">
+Había un vacío que las palabras no podían llenar.
+</p>
+
+<button class="btn" onclick="next(1)">
+SIGUE LEYENDO...
+</button>
+
+</div>
+
+<!-- PAGINA 2 -->
+
+<div class="page hidden" id="p2">
+
+<p class="normal">
+Pero entonces apareciste tú 🌹
+</p>
+
+<br>
+
+<p class="normal">
+Como una nota de color en un mundo gris,
+como un suspiro en medio de la tormenta.
+</p>
+
+<p class="rosa">
+"Eres la melancolía más bella que he decidido amar."
+</p>
+
+<button class="btn" onclick="next(2)">
+TENGO ALGO QUE DECIRTE
+</button>
+
+</div>
+
+<!-- PAGINA 3 -->
+
+<div class="page hidden" id="p3">
+
+<h1>
+¿ME HARÍAS<br>
+EL HONOR?
+</h1>
+
+<p class="normal">
+No quiero que seas solo un sueño en mis versos.
+</p>
+
+<br>
+
+<p class="normal">
+Quiero que seas mi realidad,
+mi calma y mi locura.
+</p>
+
+<p class="rosa">
+¿Quieres ser mi novia?
+</p>
+
+<div class="buttons">
+
+<button class="btn" id="yes">
+SÍ, ACEPTO ❤️
+</button>
+
+<button class="btn" id="no">
+NO
+</button>
+
+</div>
+
+</div>
+
+<!-- PAGINA FINAL -->
+
+<div class="page hidden" id="p4">
+
+<h1 class="final-title">
+¡GRACIAS POR DECIR SÍ! ❤️
+</h1>
+
+<p class="final-text">
+Prometo amarte en tus días grises
+y celebrar tus días de sol.
+</p>
+
+<br>
+
+<p class="final-text">
+Eres mi todo 🌹✨
+</p>
+
+</div>
+
+<script>
+
+function next(n){
+
+document
+.getElementById("p"+n)
+.classList.add("hidden");
+
+document
+.getElementById("p"+(n+1))
+.classList.remove("hidden");
+
+}
+
+const noBtn=
+document.getElementById("no");
+
+noBtn.addEventListener("mouseover",()=>{
+
+const x=Math.random()*
+(window.innerWidth-200);
+
+const y=Math.random()*
+(window.innerHeight-100);
+
+noBtn.style.position="absolute";
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+
+});
+
+document
+.getElementById("yes")
+.addEventListener("click",()=>{
+
+document
+.getElementById("p3")
+.classList.add("hidden");
+
+document
+.getElementById("p4")
+.classList.remove("hidden");
+
+for(let i=0;i<200;i++){
+
+setTimeout(createHeart,i*40);
+
+}
+
+});
+
+function createHeart(){
+
+const heart=
+document.createElement("div");
+
+heart.classList.add("heart");
+
+const emojis=[
+"❤️","💕","💖","🌸"
+];
+
+heart.innerHTML=
+emojis[Math.floor(Math.random()*emojis.length)];
+
+heart.style.left=
+Math.random()*100+"vw";
+
+heart.style.bottom="-30px";
+
+heart.style.fontSize=
+(15+Math.random()*30)+"px";
+
+heart.style.animationDuration=
+(4+Math.random()*4)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+}
+
+setInterval(createHeart,500);
+
+</script>
+
+</body>
+</html>
